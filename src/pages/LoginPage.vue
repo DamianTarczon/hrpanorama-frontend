@@ -17,7 +17,7 @@
 <script setup>
 import {ref} from 'vue';
 import {useRouter} from 'vue-router';
-import { useQuasar } from 'quasar'
+import {useQuasar} from 'quasar'
 
 const router = useRouter();
 const $q = useQuasar()
