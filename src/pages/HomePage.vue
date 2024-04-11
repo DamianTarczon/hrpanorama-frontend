@@ -15,7 +15,7 @@ import { Todo, Meta } from 'components/models';
 import ExampleComponent from 'components/ExampleComponent.vue';
 
 defineOptions({
-  name: 'IndexPage'
+  name: 'HomePage'
 });
 
 const todos = ref<Todo[]>([
