@@ -57,12 +57,11 @@ const inputStyle = computed<{fontSize: string}>(() => {
 
 async function handleFormSubmit() {
   const url = 'http://localhost:8000/index.php';
-  const token = 'jhgkj1yrUFYfkgiFGUYGF82GJSGkjv';
+  const token = localStorage.getItem('token');
   const data = { text: text.value };
 
   isLoading.value = true;
   try {
-
     const response = await axios.post(url, data, {
       headers: {
         'Authorization': `Bearer ${token}`

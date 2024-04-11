@@ -27,7 +27,7 @@ const password = ref('');
 
 function login() {
   if (username.value === 'admin' && password.value === 'admin') {
-    localStorage.setItem('isLogged', 'true');
+    localStorage.setItem('token', 'jhgkj1yrUFYfkgiFGUYGF82GJSGkjv');
     router.push({ path: '/' });
   } else {
     $q.notify({
