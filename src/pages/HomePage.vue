@@ -1,8 +1,8 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    <q-card>
-      <q-card-section>
-        <q-form @submit.prevent="handleFormSubmit" ref="myForm">
+    <q-form @submit.prevent="handleFormSubmit" ref="myForm">
+      <q-card>
+        <q-card-section>
           <q-input
             v-model="text"
             placeholder="Write here"
@@ -18,19 +18,15 @@
               :loading="isLoading"
             />
           </div>
-        </q-form>
-      </q-card-section>
-    </q-card>
-    <q-dialog v-model="showDialog" @hide="clearPdfUrl" auto-close>
-      <q-card style="max-width: 100%">
-        <q-card-section style="height: 80vh; width: 90vw">
-          <iframe :src="pdfUrl" frameborder="0" class="full-width full-height"></iframe>
         </q-card-section>
-        <q-card-actions class="flex justify-end">
-          <q-btn flat label="Close" color="primary" @click="showDialog = false" />
-        </q-card-actions>
       </q-card>
-    </q-dialog>
+    </q-form>
+    <PdfPreviewDialog
+      v-model="showDialog"
+      :pdfUrl="pdfUrl"
+      @update:isVisible="showDialog = $event"
+      :closeDialog="onDialogHide"
+    />
   </q-page>
 </template>
 
@@ -39,6 +35,7 @@ import {computed, ref} from 'vue';
 import {QForm, useQuasar} from 'quasar';
 import {api} from 'boot/axios';
 import {AxiosError} from 'axios';
+import PdfPreviewDialog from 'components/PdfPreviewDialog.vue';
 const baseInputFontSize = 16;
 const maxInputFontSize = 46;
 
@@ -89,7 +86,7 @@ async function handleFormSubmit() {
   }
 }
 
-function clearPdfUrl() {
+function onDialogHide() {
   pdfUrl.value = '';
   showDialog.value = false;
 }
