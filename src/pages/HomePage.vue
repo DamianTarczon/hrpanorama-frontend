@@ -33,8 +33,9 @@
 
 <script setup lang="ts">
 import {computed, ref} from 'vue';
-import axios, {AxiosError} from 'axios';
 import {QForm, useQuasar} from 'quasar';
+import {api} from 'boot/axios';
+import {AxiosError} from 'axios';
 const baseInputFontSize = 16;
 const maxInputFontSize = 46;
 
@@ -56,13 +57,12 @@ const inputStyle = computed<{fontSize: string}>(() => {
 });
 
 async function handleFormSubmit() {
-  const url = 'http://localhost:8000/index.php';
   const token = localStorage.getItem('token');
   const data = { text: text.value };
 
   isLoading.value = true;
   try {
-    const response = await axios.post(url, data, {
+    const response = await api.post('/index.php', data, {
       headers: {
         'Authorization': `Bearer ${token}`
       }

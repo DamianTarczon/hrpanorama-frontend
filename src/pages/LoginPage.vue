@@ -27,7 +27,7 @@ const password = ref('');
 
 function login() {
   if (username.value === 'admin' && password.value === 'admin') {
-    localStorage.setItem('token', 'jhgkj1yrUFYfkgiFGUYGF82GJSGkjv');
+    localStorage.setItem('token', import.meta.env.VITE_TOKEN);
     router.push({ path: '/' });
   } else {
     $q.notify({
@@ -43,5 +43,4 @@ function login() {
 .card-width {
   width: 50%;
 }
-
 </style>
