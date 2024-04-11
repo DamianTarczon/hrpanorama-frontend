@@ -1,47 +1,36 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    <example-component
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
+    <q-card>
+      <q-card-section>
+        <q-form @submit.prevent="send">
+          <q-input v-model="text" :style="inputStyle" placeholder="Write here" />
+          <div class="q-banner--top-padding">
+            <q-btn class="full-width" label="Send" type="submit" color="primary" />
+          </div>
+        </q-form>
+      </q-card-section>
+    </q-card>
   </q-page>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { Todo, Meta } from 'components/models';
-import ExampleComponent from 'components/ExampleComponent.vue';
+import {computed, ref} from 'vue';
+const baseInputFontSize: number = 16;
+const maxInputFontSize: number = 46;
 
-defineOptions({
-  name: 'HomePage'
+const text = ref<string>('');
+
+const inputStyle = computed<{fontSize: string}>(() => {
+  const sizeIncrease = text.value.length;
+  let newSize = baseInputFontSize + sizeIncrease * 0.5;
+  newSize = Math.min(newSize, maxInputFontSize);
+
+  return {
+    fontSize: `${newSize }px`
+  };
 });
 
-const todos = ref<Todo[]>([
-  {
-    id: 1,
-    content: 'ct1'
-  },
-  {
-    id: 2,
-    content: 'ct2'
-  },
-  {
-    id: 3,
-    content: 'ct3'
-  },
-  {
-    id: 4,
-    content: 'ct4'
-  },
-  {
-    id: 5,
-    content: 'ct5'
-  }
-]);
-
-const meta = ref<Meta>({
-  totalCount: 1200
-});
+function send() {
+  console.log(text)
+}
 </script>

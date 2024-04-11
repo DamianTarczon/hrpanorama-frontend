@@ -2,7 +2,7 @@
   <div class="full-width full-height flex justify-center items-center q-layout-padding" style="min-height: 100vh">
     <q-card class="card-width">
       <q-card-section>
-        <q-form @submit="login">
+        <q-form @submit.prevent="login">
           <q-input v-model="username" label="Username" />
           <q-input v-model="password" label="Password" type="password" />
           <div class="q-banner--top-padding">
@@ -39,7 +39,7 @@ function login() {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .card-width {
   width: 50%;
 }
