@@ -22,10 +22,13 @@
       </q-card-section>
     </q-card>
     <q-dialog v-model="showDialog" @hide="clearPdfUrl" auto-close>
-      <q-card>
-        <q-card-section>
-          <a :href="pdfUrl" title="hrPanorama" target="_blank">{{pdfUrl}}</a>
+      <q-card style="max-width: 100%">
+        <q-card-section style="height: 80vh; width: 90vw">
+          <iframe :src="pdfUrl" frameborder="0" class="full-width full-height"></iframe>
         </q-card-section>
+        <q-card-actions class="flex justify-end">
+          <q-btn flat label="Close" color="primary" @click="showDialog = false" />
+        </q-card-actions>
       </q-card>
     </q-dialog>
   </q-page>
@@ -68,7 +71,7 @@ async function handleFormSubmit() {
       }
     });
 
-    if(response.data){
+    if (response.data) {
       pdfUrl.value = response.data.url;
       showDialog.value = true;
       text.value = '';
