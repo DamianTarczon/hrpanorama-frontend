@@ -2,7 +2,7 @@
   <q-dialog v-model="isVisible" @hide="closeDialog" auto-close>
     <q-card style="max-width: 100%">
       <q-card-section style="height: 80vh; width: 90vw">
-        <iframe v-if="pdfUrl" :src="pdfUrl" frameborder="0" class="full-width full-height"></iframe>
+        <iframe :src="pdfUrl" frameborder="0" class="full-width full-height"></iframe>
       </q-card-section>
       <q-card-actions class="flex justify-end">
         <q-btn flat label="Close" color="primary" @click="closeDialog" />
@@ -12,7 +12,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue';
 const isVisible = defineModel<boolean>();
 
 defineProps({
