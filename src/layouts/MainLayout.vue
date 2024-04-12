@@ -2,12 +2,10 @@
   <div>
     <q-layout view="lHh lpr lFf" container style="min-height: 100vh" class="shadow-2">
       <q-header reveal elevated>
-        <q-toolbar>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
-          </q-avatar>
-
-          <q-toolbar-title>Quasar Framework</q-toolbar-title>
+        <q-toolbar class="flex justify-between items-center">
+          <q-btn color="white" @click="$router.replace('/')" style="width: 250px; height: 40px">
+            <img src="src/assets/logo.png" alt="logo">
+          </q-btn>
 
           <q-btn color="white" text-color="black" label="Logout" @click="logout" />
         </q-toolbar>
