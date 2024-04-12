@@ -9,7 +9,7 @@ const apiGetPdf = async (text: string): Promise<{
   const data = { text };
 
   try {
-    const response = await api.post('/index.php', data, {
+    const response = await api.post('/get-pdf', data, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
